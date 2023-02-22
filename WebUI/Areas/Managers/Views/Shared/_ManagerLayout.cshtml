@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Yönetici</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/mainTemplate.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebUI.styles.css" asp-append-version="true" />
+    <!-- Favicons -->
+    <link href="~/NiceAdmin/assets/img/favicon.png" rel="icon">
+    <link href="~/NiceAdmin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/NiceAdmin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/NiceAdmin/assets/css/style.css" rel="stylesheet">
+</head>
+<body style="background-image:url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg');background-repeat:no-repeat;background-attachment:fixed;background-size:cover">
+    @inject UserManager<Employee> userManager;
+    @{
+        var user = await userManager.GetUserAsync(User);
+        var isAuthorised = await userManager.IsInRoleAsync(user, "Manager");
+    }
+
+    @if (User.Identity.IsAuthenticated && isAuthorised)
+    {
+        <header>
+            <nav class="navbar navbar-expand-lg" style="background-color:aliceblue">
+                <div class="container-fluid">
+
+                    
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="" class="logo d-flex align-items-center">
+                            <img src="~/NiceAdmin/assets/img/logo.png" alt="">
+                            <span class="d-none d-lg-block">HR Platform</span>
+                        </a>
+                    </div><!-- End Logo -->
+
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item" style="font-family:monospace, Times, serif; margin:0px 10px;font-size:larger;">
+                                <a class="nav-link " asp-area="Managers" asp-controller="Home" asp-action="Summary"><b>Ana Sayfa</b></a>
+                            </li>
+                            <li class="nav-item" style="font-family:monospace, Times, serif; margin:0px 10px;font-size:larger;">
+                                <a class="nav-link " asp-area="Managers" asp-controller="Personnel" asp-action="PersonnelList"><b>Personel</b></a>
+                            </li>
+                            <li class="nav-item" style="font-family:monospace, Times, serif; margin:0px 10px;font-size:larger;">
+                                <a class="nav-link " asp-area="Managers" asp-controller="PermissionRequest" asp-action="PendingRequestList"><b>Bekleyen İzin Talepleri</b></a>
+                            </li>
+                            <li class="nav-item" style="font-family:monospace, Times, serif; margin:0px 10px;font-size:larger;">
+                                <a class="nav-link " asp-area="Managers" asp-controller="PermissionRequest" asp-action="DoneRequestList"><b>Tamamlanmış İzin Talepleri</b></a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="collapse d-flex navbar-icon" id="navbarColor01">
+                        <ul class="navbar-nav me-auto ">
+                            <li class="nav-item dropdown icon-photo ">
+                                <a class="nav-link dropdown-toggle photo-container-circle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img class="circle-image" src=@Url.Content($"~/images/{user.Photo}") alt="portrait" width="40px" height="40px" />@user.ToString()
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="Managers" asp-controller="Home" asp-action="Details">Detay Bilgilerimi göster</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="Managers" asp-controller="Home" asp-action="Update">Bilgilerimi Güncelle</a>
+                                    <div class="dropdown-divider"></div>                                    
+                                    <a class="dropdown-item" asp-area="Managers" asp-controller="Home" asp-action="ChangePassword">Şifre Değiştir</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="Managers" asp-controller="Home" asp-action="LogOut">Çıkış Yap</a>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+@*        <footer id="footer">
+            &copy; 2022 - İnsan Kaynakları Yönetim Uygulaması
+        </footer>*@
+
+        @* <footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; 2022 - İnsan Kaynakları Yönetim Uygulaması
+    </div>
+    </footer>*@
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+
+
+    }
+
+</body>
+</html>

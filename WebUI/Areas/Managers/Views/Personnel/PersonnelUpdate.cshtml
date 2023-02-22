@@ -1,0 +1,69 @@
+﻿@using Business.ViewModels.Common
+@model EmployeeUpdate
+@{
+    ViewData["Title"] = "Bilgileri Güncelle";
+}
+
+<div class="personel-update-form">
+
+    <div class="personel-list-header">
+        <br />
+        <br />
+        <h1 class="header-text">Güncelle</h1>
+        <hr />
+        <h4 class="text-danger personel-list-header">
+            @ViewBag.Message
+        </h4>
+        <br />
+        <br />
+        <br />
+    </div>
+
+    
+    <form asp-action="PersonnelUpdate" asp-controller="Personnel" asp-area="Managers" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="NewPhoto" class="control-label"></label>
+            <input asp-for="NewPhoto" class="form-control" />
+            <span asp-validation-for="NewPhoto" class="text-danger"></span>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <textarea asp-for="Address" class="form-control"></textarea>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="col-md-6"></label>
+            <div class="col-md-10">
+                <input asp-for="PhoneNumber" class="form-control" placeholder="(XXX) XXX-XXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')" maxlength="14" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group summary-btn">
+            <input type="submit" value="Güncelle" class="btn btn-primary" />
+            @Html.ActionLink("Geri", "PersonnelList",new{}, new { @class = "btn btn-primary"})
+        </div>
+
+    </form>
+
+    
+           
+
+</div>
+
+@*<div>
+    <a asp-action="PersonnelList">Geri</a>
+</div>*@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,62 @@
+﻿@using Business.ViewModels.Common
+@model EmployeeUpdate
+@{
+    ViewData["Title"] = "Bilgileri Güncelle";
+}
+<div> 
+    <div class="header-content">
+        <h1 class="header-text">Güncelle</h1>
+        <hr />
+        <h4 class="text-danger">@ViewBag.ErrorMessage</h4>
+    </div>
+
+    <div class="manager-summary">
+
+        <form asp-action="Update" asp-controller="Home" asp-area="managers" role="form" enctype="multipart/form-data" method="post" class="main-form">
+            <div class="update-content">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group col-md-12">
+                    <label class="col-md-12  ">Resim Seciniz</label>
+                    <div class="col-md-12">
+                        <input asp-for="NewPhoto" class="form-control" />
+                        <span asp-validation-for="NewPhoto" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group col-md-12">
+                    <label asp-for="Address" class="control-label"></label>
+                    <textarea asp-for="Address" class="form-control "></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="col-md-6"></label>
+                    <div class="col-md-10">
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="(XXX) XXX-XXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')" maxlength="14" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                </div>
+                <br />
+                <br />
+
+                <div class="summary-btn">
+                    <input type="submit" value="Güncelle" class="btn btn-primary " />
+                    <a asp-action="Summary" class="btn btn-primary">Geri</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

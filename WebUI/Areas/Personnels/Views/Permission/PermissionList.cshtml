@@ -1,0 +1,106 @@
+﻿@using Core.Enums;
+@model IEnumerable<Business.ViewModels.PermissionVM.PermissionListItem>
+
+@{
+    ViewData["Title"] = "İzin Talepleri";
+    Layout = "~/Areas/Personnels/Views/Shared/_PersonnelLayout.cshtml";
+}
+
+
+
+<div class="manager-summary">
+    <div class="personel-list-header">
+        <br />
+        <br />
+        <h1 class="header-text">İzin Talepleri</h1>
+        <hr />
+        <p class="header-text">@ViewBag.Message</p>
+        <p class="header-text">@TempData["Message"]</p>
+    </div>
+    <div class="personal-list-content">
+        <table class="table list-table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RequestTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PermissonType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Day)
+                    </th>
+                    <th>
+                        Durum
+                    </th>
+                    <th>
+                        İşlem Tarihi
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequestTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PermissonType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Day)
+                        </td>
+                        @if (item.Status == StatusTypes.Approved.ToString())
+                        {
+                            <td>Onaylandı</td>
+                        }
+                        else if (item.Status == StatusTypes.Rejected.ToString())
+                        {
+                            <td>Reddedildi</td>
+                        }
+                        else if (item.Status == StatusTypes.Pending.ToString())
+                        {
+                            <td>Bekleniyor</td>
+                        }
+                        else if (item.Status == StatusTypes.Canceled.ToString())
+                        {
+                            <td>İptal Edildi</td>
+                        }
+                        @if (item.Status == StatusTypes.Pending.ToString())
+                        {
+                            <td>@Html.ActionLink("İptal Et", "CancelPermission", new {  id=item.Id },new { @class = "btn btn-primary"})</td>
+                        }
+                        else if(item.Status == StatusTypes.Canceled.ToString())
+                        {
+                            <td>Talep Gönderilmedi</td>
+                        }
+                        else
+                        {
+                            <td>@Html.DisplayFor(modelItem => item.ResponseTime)</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="register-btn">
+        @Html.ActionLink("Yeni İzin Talebi", "RequestNewPermission","Permission",new{}, new { @class = "btn btn-primary"})
+    </div>
+    <br />
+</div>
+
+
+

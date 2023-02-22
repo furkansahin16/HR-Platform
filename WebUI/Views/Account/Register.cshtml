@@ -1,0 +1,224 @@
+﻿@using Business.ViewModels.Common
+@using Core.Enums;
+@model EmployeeRegister
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{PATH}/css/alertify.min.css" />
+@section Scripts{
+    <script src="~/jquery/password-hide.js"></script>
+    <script src="~/jquery/password-hide1.js"></script>
+    <script src="~/jquery/alertify.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('.telefon').mask('(000) 000-00-00');
+            $('.telefon_maskeli').mask('(000) 000-00-00', { placeholder: "(___) ___-__-__" });
+        });
+
+    </script>
+    @*<script>
+        document.querySelector("input[type='checkbox']").addEventListener("change", function () {
+            var dateInput = document.querySelector("input[type='date']");
+            if (this.checked) {
+                dateInput.disabled = false;
+            } else {
+                dateInput.disabled = true;
+            }
+        });
+    </script>*@
+    <script>
+        document.getElementById("IsActive").addEventListener("change", function () {
+            var dismissalDate = document.getElementById("DismissalDate");
+            dismissalDate.disabled = !this.checked;
+        });
+    </script>
+}
+
+
+@*<h1 class="text-info">Kayıt Ol</h1>*@
+<form asp-controller="Account" asp-action="Register" method="post" role="form" enctype="multipart/form-data" class="main-form">
+    <br />
+    <br />
+    <div class="register-header">
+        <h3>Kayıt Ol</h3>
+    </div>
+    <hr />
+
+
+    <div asp-validation-summary="All" class="text-danger header-text"></div>
+    <div class="main-register-form">
+        <div class="register-form">
+            <div class="form-group">
+                <label asp-for="FirstName" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="SecondName" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input asp-for="SecondName" class="form-control" />
+                    <span asp-validation-for="SecondName" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="LastName" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="SecondLastName" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input asp-for="SecondLastName" class="form-control" />
+                    <span asp-validation-for="SecondLastName" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="BirthDate" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input type="date" asp-for="BirthDate" class="form-control" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="PlaceOfBirth" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input asp-for="PlaceOfBirth" class="form-control" />
+                    <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="(XXX) XXX-XXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')" maxlength="10" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+
+            <br />
+            <div class="form-group">
+                <label asp-for="StartDateOfWork" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input type="date" asp-for="StartDateOfWork" class="form-control" />
+                    <span asp-validation-for="StartDateOfWork" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="DismissalDate" class="col-md-9"></label>
+                <div class="col-md-10">
+                    <input type="date" asp-for="DismissalDate" class="form-control" />
+                     @Html.CheckBox("IsActive",false) 
+                     @Html.DisplayNameFor(m => m.IsActive)
+                    <span asp-validation-for="DismissalDate" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+        </div>
+
+        <div class="register-form">
+            <div class="form-group">
+                <label asp-for="TCNo" class="col-md-4"></label>
+                <div class="col-md-10">
+                    <input type="text" asp-for="TCNo" class="form-control" value="" />
+                    <span asp-validation-for="TCNo" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="Address" class="col-md-4"></label>
+                <div class="col-md-10">
+                    <textarea asp-for="Address" class="form-control"></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyInfo" class="col-md-4"></label>
+                <div class="col-md-10">
+                    <input asp-for="CompanyInfo" class="form-control" />
+                    <span asp-validation-for="CompanyInfo" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Job" class="col-md-4"></label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.Job, Html.GetEnumSelectList<Jobs>(), new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="Department" class="col-md-4"></label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.Department, Html.GetEnumSelectList<Departments>(), new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            @*<div class="form-group">
+                <label asp-for="Password" class="col-md-4"></label>
+                <div class="input-icons col-md-10">
+                    <input id="txtPassword" type="password" class="form-control col-sm-9 input-field" asp-for="Password" placeholder="Şifre">
+                    <span id="toggle_pwd" class="fa-fw fa fa-eye field-icon"></span>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="col-md-4"></label>
+                <div class="input-icons col-md-10">
+                    <input id="txtPassword1" type="password" class="form-control col-sm-9 input-field" asp-for="ConfirmPassword" placeholder="Şifre tekrar">
+                    <span id="toggle_pwd1" class="fa-fw fa fa-eye field-icon"></span>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <br />*@
+
+            <div class="form-group">
+                <label class="col-md-6  ">Resim Seciniz</label>
+                <div class="col-md-10">
+                    <input asp-for="Photo" class="form-control" />
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="form-group register-btn">
+        <div class="offset-md-4 col-md-6">
+            <button type="submit" class="btn btn-primary col-sm-4">Kayıt</button>
+            @Html.ActionLink("Geri", "Login", new{}, new { @class = "btn btn-primary"})
+        </div>
+    </div>
+
+</form>
+
+
+
+
+
+

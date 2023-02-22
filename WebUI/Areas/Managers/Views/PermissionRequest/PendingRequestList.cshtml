@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Business.ViewModels.PermissionVM.PermissionListItem>
+
+@{
+    ViewData["Title"] = "İzin Talepleri";
+}
+
+
+<div class="manager-summary">
+
+    <br />
+    <br />
+    <div class="personel-list-header">
+        <h1 class="header-text">İzin Talepleri</h1>
+        <hr />
+        <p class="header-text">@ViewBag.Message</p>
+        <p class="header-text">@TempData["Message"]</p>
+    </div>
+    <div class="personal-list-content">
+        <table class="table list-table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RequestTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PermissonType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Day)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model is not null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RequestTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PermissonType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Day)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Onayla", "ApproveRequest", new {  id=item.Id },new { @class = "btn btn-primary"})
+
+                                @Html.ActionLink("Reddet", "RejectRequest", new { id=item.Id  },new { @class = "btn btn-primary"})
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @*<div class="register-btn">
+        @Html.ActionLink("Yeni Personel Ekle", "PersonnelCreate","Personnel",new{}, new { @class = "btn btn-primary"})
+    </div>*@
+    <br />
+</div>
+
+

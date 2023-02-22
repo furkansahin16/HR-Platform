@@ -1,0 +1,145 @@
+﻿@model Core.Entites.Concrete.Employee
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+    <div class="main-form pers-details-content">
+       
+        <div class="personel-list-header">
+            <br />
+            <h1 class="header-text">Personel Detayları</h1>
+            <hr />
+            <br />
+        </div>
+
+        <div>
+            <dl class="row">
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Photo)
+                </dt>
+                <dd class="col-sm-6">
+                    <img src=@Url.Content($"~/images/{Model.Photo}") alt="portrait" width="100px" height="100px" />
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.FirstName)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.SecondName)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.SecondName)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.SecondLastName)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.SecondLastName)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.BirthDate)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.BirthDate)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.PlaceOfBirth)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.PlaceOfBirth)
+                </dd>
+                    @*<dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Photo)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Photo)
+                </dd>*@
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.TCNo)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.TCNo)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.StartDateOfWork)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.StartDateOfWork)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.DismissalDate)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.DismissalDate)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.IsActive)
+                </dt>
+                <dd class="col-sm-6">
+                <label>@(Model.IsActive ? "Çalışıyor" : "Ayrılmış")</label>
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Job)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Job)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Department)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Department)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+                <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.CompanyInfo)
+                </dt>
+                <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.CompanyInfo)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="pers-detail-btn">
+            <br />
+            <br />
+                @Html.ActionLink("Güncelle", "PersonnelUpdate", new { email = Model.Email }, new { @class = "btn btn-primary"}) 
+                @Html.ActionLink("Geri", "PersonnelList", new { email = Model.Email }, new { @class = "btn btn-primary"})
+                @*<a asp-action="PersonnelList">Geri</a>*@
+            <br />
+            <br />  
+        </div>
+        <br />
+        <br />
+    </div>
+
+
+

@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "mssql4": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/baonline2sqlserver/databases/hrplatform-db",
+      "type": "mssql.azure",
+      "connectionId": "hrplatform-db-cs"
+    },
+    "mssql2": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "hrms-dbcontext-bilgeadam"
+    },
+    "mssql3": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "cs1"
+    },
+    "mssql1": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "hr-platform",
+      "dynamicId": null
+    }
+  }
+}

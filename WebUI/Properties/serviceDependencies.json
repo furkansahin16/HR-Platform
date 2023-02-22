@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "hr-platform",
+      "dynamicId": null
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "hrms-dbcontext-bilgeadam"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "cs1"
+    },
+    "mssql4": {
+      "type": "mssql",
+      "connectionId": "hrplatform-db-cs"
+    }
+  }
+}

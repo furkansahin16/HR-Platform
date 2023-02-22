@@ -1,0 +1,89 @@
+﻿@using Core.Enums;
+@model IEnumerable<Business.ViewModels.PermissionVM.PermissionListItem>
+@{
+    ViewData["Title"] = "Tamamlanmış İzinler";
+}
+
+
+
+<div class="manager-summary">
+    <div class="personel-list-header">
+        <br />
+        <br />
+        <h1 class="header-text">Tamamlanmış İzinler</h1>
+        <hr />
+        <p class="header-text">@ViewBag.Message</p>
+    </div>
+    <div class="personal-list-content">
+        <table class="table list-table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Employee)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RequestTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ResponseTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PermissonType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Day)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequestTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ResponseTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PermissonType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Day)
+                        </td>
+                        @if (item.Status == StatusTypes.Approved.ToString())
+                        {
+                            <td>Onaylandı</td>
+                        }
+                        else if (item.Status == StatusTypes.Rejected.ToString())
+                        {
+                            <td>Reddedildi</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <br />
+</div>
+
+
+

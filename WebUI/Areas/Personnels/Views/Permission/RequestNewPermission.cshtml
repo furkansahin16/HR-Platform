@@ -1,0 +1,56 @@
+﻿@using Business.ViewModels.PermissionVM
+@using Core.Enums;
+@using Microsoft.AspNetCore.Identity;
+@model PermissionCreate
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+@{
+    Layout = "~/Areas/Personnels/Views/Shared/_PersonnelLayout.cshtml";
+}
+
+<form asp-area="Personnels" asp-controller="Permission" asp-action="RequestNewPermission" method="post" role="form" class="main-form">
+    <div class="header-content">
+        <h4 class="header-text">İzin Talebi Oluştur</h4>
+        <hr />
+    </div>
+
+    <p class="text-dangger">@ViewBag.Message</p>
+
+    <div class="main-register-form">
+        <div class="register-form">
+            <div class="form-group">
+                <label asp-for="PermissionTypes" class="col-md-9"></label>
+                <div class="col-md-10" >
+                    @Html.DropDownListFor(m => m.PermissionTypes, Html.GetEnumSelectList<PermissionTypes>(),  new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="StartTime" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input type="date" asp-for="StartTime" class="form-control"/>
+                    <span asp-validation-for="StartTime" class="text-danger" ></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndTime" class="col-md-6"></label>
+                <div class="col-md-10">
+                    <input type="date" asp-for="EndTime" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger" ></span>
+                </div>
+            </div>
+            <br /> 
+        </div>
+    </div>
+    <br />
+    <div class="form-group register-btn">
+        <div class="offset-md-4 col-md-6">
+            <button type="submit" class="btn btn-primary col-sm-4">Talep Oluştur</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+

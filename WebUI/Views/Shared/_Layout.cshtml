@@ -1,0 +1,84 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HR Platform</title>
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/mainTemplate.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebUI.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/mainTemplate.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebUI.styles.css" asp-append-version="true" />
+    <!-- Favicons -->
+    <link href="~/NiceAdmin/assets/img/favicon.png" rel="icon">
+    <link href="~/NiceAdmin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/NiceAdmin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/NiceAdmin/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="login-body">
+    @*<header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Index">WebUI</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>*@
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        
+       
+    </div>
+@*    <div id="footer">
+        &copy; 2022 - İnsan Kaynakları Yönetim Uygulaması
+    </div>*@
+    @*<footer class="border-top footer text-muted">
+            <div class="containerr">
+                &copy; 2022 - İnsan Kaynakları Yönetim Uygulaması
+            </div>
+    </footer>  *@ 
+      
+        
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

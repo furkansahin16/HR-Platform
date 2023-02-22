@@ -1,0 +1,69 @@
+﻿@model Business.ViewModels.Common.EmployeeSummary
+
+@{
+    //ViewData["Title"] = Model.ToString();
+    Layout = "~/Areas/Managers/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div class="manager-summary">
+    <div class="header-content">
+        <h1 class="header-text">Özet Bilgiler</h1>
+        <hr />
+    </div>
+    
+    <div class="summary-content">
+        <dl class="row">
+            <dt class="col-sm-5 photo-dt">
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+            <dd class="col-sm-6">
+                <div class="photo-container">
+                    <img src=@Url.Content($"~/images/{Model.Photo}") alt="portrait" width="100px" height="100px" />
+                </div>
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.FullName)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model=>model.FullName)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Job)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Job)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Department)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Department)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+        </dl>        
+    </div>
+    <br />
+    <div class="summary-btn">
+        <br />
+        <br />
+        @Html.ActionLink("Bilgilerimi Güncelle", "Update",new{}, new { @class = "btn btn-primary"})
+        @Html.ActionLink("Detay Bilgileri Göster", "Details", new{}, new { @class = "btn btn-primary"})
+
+        @*<button type="button" class="btn btn-primary">@Html.ActionLink("Bilgilerimi Güncelle", "Bilgilerimi Güncelle")</button>
+        <button type="button" class="btn btn-primary">@Html.ActionLink("Detay Bilgileri Göster", "Details")</button>*@
+    </div>
+
+
+</div>
+
